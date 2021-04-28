@@ -36,7 +36,7 @@ module.exports = (app) => {
 
  app.on('issue_comment.created', async (context) => {
   console.log("Issue comment created")
-  if (context.payload.sender.login != "counselorbot[bot]") {
+  if (context.payload.sender.login != "counselorbot-dev[bot]") {
     main(context, 'issue_comment.created');
   }
  });
