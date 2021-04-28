@@ -29,10 +29,10 @@ const issueNo = async (context) => {
   return res.data[0].number
 }
 
-const typeStep = async (currentStep, configyml, eventTrigger) => {
+const typeStep = async (currentStep, configyml, eventTrigger) => {  
     const step = configyml.steps[parseInt(currentStep)]
     var stepType = step.stepType;
-    var event = configyml.steps[currentStep].event
+    var event = configyml.steps[parseInt(currentStep)].event
 
     try {
       var files = step.actions[0].files
