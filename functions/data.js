@@ -49,28 +49,13 @@ const typeStep = async (currentStep, configyml, eventTrigger) => {
 }
 
 const findStep = async (context) => {
-    const params = context.issue() 
+  const responseBody = context.issue({
+    path: ".bit/.progress"
+  });
 
-    gqlrequest = `
-    query getCount {
-        users_progress(where: {repoName: {_eq: "${params.repo}"}, user: {_eq: "${params.owner}"}}, order_by: {startTime: desc}) {
-          count
-        }
-      }      
-    `
-    // output:
-    // {
-    //     "data": {
-    //       "users_progress": [
-    //         {
-    //           "count": 3
-    //         }
-    //       ]
-    //     }
-    //   }
-    let result = await gql.queryData(gqlrequest)
-    count = result.data.users_progress[0].count
-    return count
+  let countfile = await context.octokit.repos.getContent(responseBody);
+  let count = Buffer.from(countfile.data.content, 'base64').toString()
+  return count
 }
 
 const yamlFile = async (context) => {
