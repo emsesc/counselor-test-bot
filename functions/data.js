@@ -30,9 +30,9 @@ const issueNo = async (context) => {
 }
 
 const typeStep = async (currentStep, configyml, eventTrigger) => {  
-    const step = configyml.steps[parseInt(currentStep)]
+    const step = configyml.steps[currentStep]
     var stepType = step.stepType;
-    var event = configyml.steps[parseInt(currentStep)].event
+    var event = configyml.steps[currentStep].event
 
     try {
       var files = step.actions[0].files
@@ -55,7 +55,7 @@ const findStep = async (context) => {
 
   let countfile = await context.octokit.repos.getContent(responseBody);
   let count = Buffer.from(countfile.data.content, 'base64').toString()
-  return count
+  return parseInt(count)
 }
 
 const yamlFile = async (context) => {
