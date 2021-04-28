@@ -30,7 +30,7 @@ const issueNo = async (context) => {
 }
 
 const typeStep = async (currentStep, configyml, eventTrigger) => {
-    const step = configyml.steps[currentStep]
+    const step = configyml.steps[parseInt(currentStep)]
     var stepType = step.stepType;
     var event = configyml.steps[currentStep].event
 
