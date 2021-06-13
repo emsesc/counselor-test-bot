@@ -8,7 +8,7 @@ const parseTable = (markdown) => {
     if (labContent[2] == null) {
       labContent = markdown
       console.log("---------------------")
-      console.log(labContent[1])
+      console.log(labContent)
     } else {
       labContent.splice(0,2);
       labContent = labContent.join('---\n')
