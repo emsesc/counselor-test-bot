@@ -4,11 +4,12 @@ const yaml = require('js-yaml');
 const parseTable = (markdown) => {
   let labContent = ""
   try {
+    markdown = markdown.replace("/r", "")
     labContent = markdown.split('---\n')
     console.log(labContent)
+    
     if (labContent[2] == null) {
       labContent = markdown
-      console.log("---------------------")
     } else {
       labContent.splice(0,2);
       labContent = labContent.join('---\n')
