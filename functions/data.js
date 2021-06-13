@@ -9,7 +9,13 @@ const parseTable = (markdown) => {
     console.log(labContent)
     
     if (labContent[2] == null) {
-      labContent = markdown
+      if (markdown.split('---\r\n')[2] != null) {
+        newContent = markdown.split('---\r\n')
+        newContent = newContent.join('---\n')
+        labContent = newContent.toString()
+      } else {
+        labContent = markdown
+      }
     } else {
       labContent.splice(0,2);
       labContent = labContent.join('---\n')
